@@ -81,10 +81,10 @@ def verify_types(inlist):
     rejectlist = []
     for i in inlist:
         if determine_type_by_base_name(i, True):
-            outlist.append(i)
+            outlist.append(str(i).replace(',', '\,'))  # escape comma for rclone, think about separate method later
         elif determine_type_by_parent_folder_name(i, True):
             repairedfile = repair_file_name(i)
-            outlist.append(repairedfile)
+            outlist.append(str(repairedfile).replace(',', '\,'))  # escape comma for rclone
         else:
             rejectlist.append(i)
     for o in outlist:
